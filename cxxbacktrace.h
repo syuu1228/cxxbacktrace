@@ -56,6 +56,8 @@ cxxbacktrace_dump_symbols(void **buffer, int size)
 			demangled = abi::__cxa_demangle(info.dli_sname, 0, 0, &status);
             printf("%p <%s+%d> at %s\n",
 				   buffer[i], demangled ? demangled : info.dli_sname, offset, info.dli_fname);
+			if (demanged)
+				free(demangled);
         } else {
             printf("%p\n", buffer[i]);
         }
